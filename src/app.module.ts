@@ -1,12 +1,10 @@
-// src/app.module.ts
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';  // Root controller
-import { AppService } from './app.service';        // Root service
-import { UserModule } from './user/user.module';   // Import the user module
+import { UserController } from './user/user.controller';
+import { UserService } from './user/user.service';
 
 @Module({
-  imports: [UserModule],  // Include UserModule in your application
-  controllers: [AppController],  // Include AppController for root route
-  providers: [AppService],       // Include AppService for the root controller
+  imports: [],
+  controllers: [UserController],  // Register the UserController here
+  providers: [UserService],
 })
 export class AppModule {}

@@ -1,25 +1,19 @@
-// vercel.ts
 import { NestFactory } from '@nestjs/core';
-
-import { ExpressAdapter } from '@nestjs/platform-express';
-import express from 'express';
 import { AppModule } from './src/app.module';
 
 let cachedServer: any;
 
-async function createServer() {
-  const server = express();
-  const app = await NestFactory.create(AppModule, new ExpressAdapter(server));
-
-  app.enableCors();  // Enable CORS if needed
-
-  return server;
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  await app.init();  // Initialize the NestJS app
+  return app.getHttpAdapter().getInstance();
 }
 
-export default async (req: any, res: any) => {
+const server = async (req, res) => {
   if (!cachedServer) {
-    cachedServer = await createServer();
+    cachedServer = await bootstrap();  // Lazy initialization of the app on first request
   }
-
-  return cachedServer(req, res);  // Route the request to the cached server
+  cachedServer(req, res);  // Forward the request and response to the server instance
 };
+
+export default server;
