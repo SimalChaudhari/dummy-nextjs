@@ -1,6 +1,5 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './routes/app.module';
-import { Logger } from '@nestjs/common';
+import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -8,15 +7,8 @@ async function bootstrap() {
   // Enable CORS
   app.enableCors();
 
-  // Log all registered routes
-  const server = app.getHttpServer();
-  const router = server._events.request._router;
-  const routes = router.stack
-    .filter((layer: any) => layer.route)
-    .map((layer: any) => layer.route.path);
-  Logger.log(`Registered Routes: ${JSON.stringify(routes)}`);
-
-  const PORT = 5000;
+  // Use PORT from the environment, fallback to 3000
+  const PORT = process.env.PORT || 3000;
   await app.listen(PORT);
   console.log(`Application is running on: http://localhost:${PORT}`);
 }
