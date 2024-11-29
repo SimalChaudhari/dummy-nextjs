@@ -9,11 +9,11 @@ async function bootstrap() {
   return app.getHttpAdapter().getInstance();
 }
 
-const server = async (req, res) => {
+const server = async (req: any, res: any) => {
   if (!cachedServer) {
-    cachedServer = await bootstrap();  // Lazy initialization of the app on first request
+    cachedServer = await bootstrap();  // Lazy initialization on the first request
   }
-  cachedServer(req, res);  // Forward the request and response to the server instance
+  cachedServer(req, res);  // Pass request and response to the server instance
 };
 
 export default server;

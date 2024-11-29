@@ -1,30 +1,50 @@
+// {
+//   "compilerOptions": {
+//     "target": "ES2017",                              // Set target to a modern JavaScript version
+//     "module": "CommonJS",                            // Use CommonJS for module system
+//     "moduleResolution": "node",                      // Enable Node.js-style module resolution
+//     "outDir": "./dist",                              // Output directory for compiled files
+//     "rootDir": "./src",                              // Root directory of source files
+//     "strict": true,                                  // Enable strict type checking
+//     "esModuleInterop": true,                         // Allow default imports from CommonJS modules
+//     "skipLibCheck": true,                            // Skip library type checking (faster builds)
+//     "forceConsistentCasingInFileNames": true,        // Enforce consistent casing in file names
+//     "resolveJsonModule": true,                       // Allow importing JSON files
+//     "noImplicitAny": false,  
+//     "experimentalDecorators": true,
+//     "emitDecoratorMetadata": true,                        // Allow variables with an 'any' type
+//     "baseUrl": "./",                                 // Base directory for relative paths
+//     "paths": {
+//       "*": ["node_modules/*", "src/types/*"]         // Allow importing from 'src/types'
+//     },
+//     "types": ["node", "jest"],                       // Include node and jest types
+//     "lib": ["ES2017", "DOM"]                         // Specify the libraries to include in the build
+//   },
+//   "include": [
+//     "src/**/*.ts"                                    // Include all TypeScript files in the src folder
+//   ],
+//   "exclude": [
+//     "node_modules",                                  // Exclude node_modules from compilation
+//     "dist"                                           // Exclude the dist folder from compilation
+//   ]
+// }
 {
   "compilerOptions": {
-    "target": "ES2017",                              // Set target to a modern JavaScript version
-    "module": "CommonJS",                            // Use CommonJS for module system
-    "moduleResolution": "node",                      // Enable Node.js-style module resolution
-    "outDir": "./dist",                              // Output directory for compiled files
-    "rootDir": "./src",                              // Root directory of source files
-    "strict": true,                                  // Enable strict type checking
-    "esModuleInterop": true,                         // Allow default imports from CommonJS modules
-    "skipLibCheck": true,                            // Skip library type checking (faster builds)
-    "forceConsistentCasingInFileNames": true,        // Enforce consistent casing in file names
-    "resolveJsonModule": true,                       // Allow importing JSON files
-    "noImplicitAny": false,  
+    "target": "ES2017",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,                        // Allow variables with an 'any' type
-    "baseUrl": "./",                                 // Base directory for relative paths
-    "paths": {
-      "*": ["node_modules/*", "src/types/*"]         // Allow importing from 'src/types'
-    },
-    "types": ["node", "jest"],                       // Include node and jest types
-    "lib": ["ES2017", "DOM"]                         // Specify the libraries to include in the build
+    "emitDecoratorMetadata": true,
+    "outDir": "./dist",
+    "rootDir": "./src"
   },
   "include": [
-    "src/**/*.ts"                                    // Include all TypeScript files in the src folder
+    "src/**/*.ts"
   ],
   "exclude": [
-    "node_modules",                                  // Exclude node_modules from compilation
-    "dist"                                           // Exclude the dist folder from compilation
+    "node_modules"
   ]
 }

@@ -1,13 +1,12 @@
-// src/user/user.controller.ts
 import { Controller, Get } from '@nestjs/common';
 import { UserService } from './user.service';
 
-@Controller('user')  // Define route prefix here
+@Controller('user')  // This will map to /user route
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Get()  // Handle GET request to '/user'
+  @Get()  // HTTP GET request for /user
   getUser(): string {
-    return 'This is a dummy user';  // Replace with actual logic
+    return this.userService.getUser();
   }
 }
