@@ -1,5 +1,5 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { AppModule } from './routes/app.module';
 import { Logger } from '@nestjs/common';
 
 async function bootstrap() {
@@ -16,7 +16,7 @@ async function bootstrap() {
     .map((layer: any) => layer.route.path);
   Logger.log(`Registered Routes: ${JSON.stringify(routes)}`);
 
-  const PORT = 4000;
+  const PORT = 5000;
   await app.listen(PORT);
   console.log(`Application is running on: http://localhost:${PORT}`);
 }
