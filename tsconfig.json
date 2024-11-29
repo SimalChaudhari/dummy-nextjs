@@ -19,7 +19,7 @@
       "*": ["node_modules/*", "*"]
     }
   },
-  "include": ["src/**/*"], // Include the custom types],
+  "include": ["src/**/*", "vercel.ts"], // Include the custom types],
   "exclude": ["node_modules", "dist"]
   
 }

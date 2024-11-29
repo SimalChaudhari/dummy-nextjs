@@ -1,14 +1,13 @@
+// src/app.controller.ts
 import { Controller, Get } from '@nestjs/common';
+import { AppService } from 'app.service';
 
-@Controller()
+@Controller()  // This will handle the root (/) route
 export class AppController {
-  @Get()
-  getHello(): string {
-    return 'Hello from NestJS!';
-  }
+  constructor(private readonly appService: AppService) {}
 
-  @Get('user')
-  getUser() {
-    return { message: 'User route works!' };
+  @Get()  // Respond to GET requests on '/'
+  getHello(): string {
+    return this.appService.getHello();
   }
 }
