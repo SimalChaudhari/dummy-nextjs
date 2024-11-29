@@ -1,6 +1,6 @@
 // src/app.controller.ts
 import { Controller, Get } from '@nestjs/common';
-import { AppService } from 'app.service';
+import { AppService } from './app.service';
 
 @Controller()  // This will handle the root (/) route
 export class AppController {
