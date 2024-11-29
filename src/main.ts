@@ -1,14 +1,24 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import * as express from 'express';
+import { ExpressAdapter } from '@nestjs/platform-express';
+import express from 'express';
+import { VercelRequest, VercelResponse } from '@vercel/node';
 
-async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+let cachedServer: any;
 
-  app.enableCors();  // Enable CORS for cross-origin requests
-  const port = process.env.PORT || 4000;  // Vercel assigns a dynamic port
-  await app.listen(port);
-  console.log(`Application is running on: http://localhost:${port}`);
+async function createServer() {
+  const server = express();  // Initialize the express server
+  const app = await NestFactory.create(AppModule, new ExpressAdapter(server));
+
+  app.enableCors();  // Enable CORS if needed
+
+  return server;
 }
 
-bootstrap();
+export default async (req: VercelRequest, res: VercelResponse) => {
+  if (!cachedServer) {
+    cachedServer = await createServer();
+  }
+
+  return cachedServer(req, res); // Route the request to the cached server
+};
